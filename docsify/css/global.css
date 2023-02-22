@@ -1,0 +1,165 @@
+/* 自定义配置 */
+:root {
+  --lightColor: #f8f9fa;
+  --darkColor: #343a40;
+  --infoColor: #17a2b8;
+  --warningColor: #ffc107;
+  --successColor: #28a745;
+  --primaryColor: #007bff;
+  --secondaryColor: #6c757d;
+}
+/* themeable 主题颜色配置 */
+:root {
+  /* --code-inline-color: #cb6f2e; */
+}
+
+/* 置顶 */
+#back2top {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 99999;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid var(--lightColor);
+  background-color: var(--secondaryColor);
+  color: var(--lightColor);
+  font-size: x-large;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: all 0.15s;
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -ms-transition: all 0.15s;
+  -o-transition: all 0.15s;
+  display: none;
+}
+#back2top:hover {
+  opacity: 0.88 !important;
+}
+
+/* 主题切换 */
+#theme-switch {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 99999;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: all 0.15s;
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  -ms-transition: all 0.15s;
+  -o-transition: all 0.15s;
+  display: block;
+  color: var(--lightColor);
+  border: 1px dashed var(--lightColor);
+  opacity: 0.66;
+  background-color: var(--darkColor);
+}
+#theme-switch:hover {
+  opacity: 0.88;
+}
+#theme-switch:active {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+#theme-switch[type='light'] {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+#theme-switch[type='dark'] {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
+#theme-switch[type='light'] ~ .cover:before {
+  background-color: inherit;
+  background-image: inherit;
+}
+#theme-switch[type='dark'] ~ .cover:before {
+  background-color: var(--cover-background-color);
+  background-image: var(--cover-background-image);
+}
+/* themeable 主题部分不好用的地方兼容 */
+.app-nav li {
+  cursor: pointer;
+}
+.app-nav > ul > li li:hover {
+  color: var(--primaryColor);
+}
+body.ready-transition.ready-spinner:after {
+  z-index: 998;
+  opacity: 1 !important;
+  position: fixed;
+  top: 46%;
+  left: 48%;
+  transform: translate(-49%, -49%);
+  -webkit-transform: translate(-49%, -49%);
+  -moz-transform: translate(-49%, -49%);
+  -ms-transform: translate(-49%, -49%);
+  -o-transform: translate(-49%, -49%);
+}
+body.sticky:after {
+  display: none;
+}
+.cover {
+  z-index: 999;
+}
+.loading-container {
+  z-index: 1000;
+}
+body {
+  z-index: 995;
+  font-family: Arial, 'Microsoft YaHei', PingFangSC-Regular, 'Hiragino Sans GB', 'Droid Sans Fallback',
+    'WenQuanYi Micro Hei', sans-serif;
+}
+.docsify-tabs button {
+  cursor: pointer;
+}
+.task-list input {
+  cursor: pointer;
+}
+summary {
+  cursor: pointer;
+}
+
+/* 在线编辑 */
+.markdown-section > div[style]:first-child {
+  height: auto !important;
+}
+.markdown-section > div[style]:first-child > p {
+  float: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.markdown-section > div[style]:first-child > p > a {
+  text-decoration: none !important;
+}
+#edit-btn {
+  color: var(--infoColor);
+  opacity: 0.35;
+}
+#edit-btn:hover {
+  opacity: 0.88;
+  text-decoration: underline;
+}

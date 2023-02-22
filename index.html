@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>前端文档</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="shortcut icon" href="./favicon.png" />
+    <!-- Themes (light + dark) -->
+    <link rel="stylesheet" id="theme-link" href="./docsify/theme/theme-simple-light.css" />
+    <link rel="stylesheet" href="./docsify/css/loading.css" />
+    <link rel="stylesheet" href="./docsify/css/global.css" />
+  </head>
+  <body>
+    <button id="theme-switch" type="light">
+      <svg
+        t="1676368149114"
+        class="icon"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        p-id="8414"
+        style="width: 28px; height: 28px; pointer-events: none; position: fixed; bottom: 5.5px; left: 5px"
+      >
+        <path
+          d="M924.8 337.6a449.344 449.344 0 1 0-828.288 348.8 449.344 449.344 0 0 0 828.288-348.8z m-448.768 544.64A368.768 368.768 0 0 1 248.96 775.04a371.968 371.968 0 0 1 0-525.952 369.152 369.152 0 0 1 226.944-107.264v740.48z m298.944-633.216c10.112 10.048 19.584 20.672 28.416 31.808l-255.36 255.36V457.088l217.344-217.344c3.264 3.008 6.464 6.144 9.6 9.344z m60.48 78.976c9.856 17.28 18.304 35.328 25.216 54.016l-312.704 312.576V615.424l287.488-287.424z m42.304 116.032c4.16 22.4 6.208 45.184 6.272 67.968l-0.064 5.12-336 335.872v-79.168l329.792-329.792z m-156.352-239.616l-173.44 173.44V298.624l123.136-123.072c17.536 8.32 34.304 17.92 50.304 28.864z m-107.904-50.432L547.968 219.52V141.696c22.208 2.176 44.16 6.272 65.536 12.288z m161.472 620.992a369.664 369.664 0 0 1-166.08 96.256l262.4-262.336a369.728 369.728 0 0 1-96.32 166.08z"
+          fill="#f8f9fa"
+          p-id="8415"
+        ></path>
+      </svg>
+    </button>
+    <div data-app id="bio-main">
+      <div class="loading-container">
+        <div class="sun-loading">
+          <div class="sun">
+            <div class="sun-body">
+              <div class="line" style="transform: rotate(calc(1 * 45deg))"></div>
+              <div class="line" style="transform: rotate(calc(2 * 45deg))"></div>
+              <div class="line" style="transform: rotate(calc(3 * 45deg))"></div>
+              <div class="line" style="transform: rotate(calc(4 * 45deg))"></div>
+              <div class="line" style="transform: rotate(calc(5 * 45deg))"></div>
+              <div class="line" style="transform: rotate(calc(6 * 45deg))"></div>
+              <div class="line" style="transform: rotate(calc(7 * 45deg))"></div>
+              <div class="line" style="transform: rotate(calc(8 * 45deg))"></div>
+            </div>
+            <div class="eye"></div>
+          </div>
+          <div class="horizon"></div>
+        </div>
+      </div>
+    </div>
+    <button id="back2top">
+      <svg
+        t="1676368002161"
+        class="icon"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        p-id="3449"
+        style="width: 38px; height: 45px; pointer-events: none; position: fixed; bottom: 12px; right: 7.5px"
+      >
+        <path
+          d="M421.28 812.96c-15.36 0-13.92 6.72-10.08 17.76 13.44 37.92 25.92 76.32 40.32 118.08 7.68-12.48 13.44-21.6 20.64-33.6 17.76 23.04 19.2 50.88 39.36 72 9.6-23.52 18.24-44.64 27.84-68.64 6.72 9.6 12 16.8 19.2 26.88 18.24-44.64 35.52-86.4 54.24-131.52-66.72-0.48-129.12-0.48-191.52-0.96l0 0zM553.76 892.64c-17.28-20.64-17.28-20.64-21.6-14.4-6.24 16.32-12.96 33.12-22.08 56.16-12-24-26.88-60.96-30.72-60.96-8.16 7.68-9.12 10.08-17.28 16.8-28.32-54.24-27.84-55.2 30.72-55.2 27.36 0 54.72 0 83.52 0.48-5.28 21.6-13.92 39.84-22.56 57.12l0 0zM627.68 187.52c-29.28-54.72-65.28-97.92-105.12-138.72-8.16-8.16-14.88-19.68-29.76-4.32-115.68 120.48-190.56 256.32-169.44 430.08 12.48 101.76 38.88 200.64 70.08 298.08 5.28 16.8 14.4 22.56 31.68 22.08 54.24-0.96 108.48-0.96 162.72 0.48 19.68 0.48 29.28-5.28 36.96-24 27.84-68.16 48-138.24 59.52-210.72 21.6-132 15.84-260.16-56.64-372.96l0 0zM656.48 562.88c-10.08 60.96-28.32 120-50.4 177.6-6.24 15.36-13.92 20.64-30.24 20.16-45.6-1.44-91.2-0.96-137.28-0.48-13.44 0-20.64-3.36-25.44-17.76-29.76-92.16-53.76-185.28-64.32-281.28-16.32-148.32 48.96-265.92 144-371.52 10.08-11.04 16.8-8.64 26.4 1.44 32.64 35.04 62.4 72.48 88.32 120.48 67.68 105.6 69.6 227.04 48.96 351.36l0 0zM462.56 362.72c-42.72 24.48-57.6 79.68-33.12 122.4 24 42.24 80.16 57.6 122.4 34.08 41.76-23.52 57.12-80.16 33.12-122.88-24.48-42.72-80.16-58.08-122.4-33.6l0 0zM541.28 497.12c-30.24 18.24-72.96 7.2-91.2-24-17.76-30.24-7.2-70.56 22.56-88.8 30.72-18.72 72-8.16 90.72 24 17.76 30.24 7.68 71.04-22.08 88.8l0 0zM722.24 458.72c7.68 86.4-10.56 168.48-50.4 245.28-6.24 11.52-16.32 22.08 0.96 34.56 35.52 25.44 51.84 61.44 52.8 108.96 86.88-62.4 134.88-142.08 140.64-244.8 4.8-81.6-39.84-141.6-118.08-162.72-18.24-5.76-28.32-7.68-25.92 18.72l0 0zM768.8 474.08c47.52 18.24 77.76 62.4 76.32 117.12-1.92 78.24-35.04 153.12-100.32 206.88-9.6-29.28-22.08-53.76-44.16-72-10.56-8.64-4.32-16.8 0-25.44 32.16-64.32 51.36-141.6 48.96-213.6-1.44-17.76 4.8-18.24 19.2-12.96l0 0zM292.64 457.28c1.44-26.4-8.64-24.48-26.88-18.72-77.76 24-120 84.96-112.8 166.56 9.12 102.72 59.52 180.48 148.32 240-0.48-47.04 14.88-84 49.44-110.4 16.8-12.96 6.24-23.04 0-34.56-42.24-75.36-63.36-156.48-58.08-242.88l0 0zM246.56 474.08c13.92-5.76 20.16-5.76 20.16 12.48-0.48 72 21.12 148.8 55.68 212.16 4.32 8.16 11.04 16.32 0.96 25.44-21.6 18.72-33.12 43.68-41.76 72.96-67.2-51.36-102.72-125.76-107.52-203.52-2.88-54.72 25.92-99.84 72.48-119.52l0 0z"
+          fill="#f8f9fa"
+          p-id="3450"
+        ></path>
+      </svg>
+    </button>
+    <script src="./docsify/plugin/edit-on-github.min.js"></script>
+    <script src="./docsify/plugin/console.obfuscated.min.js"></script>
+    <script src="./source/_conf/init.js"></script>
+    <script src="./docsify/js/main.js"></script>
+    <!-- Docsify v4.13.0 -->
+    <!-- <script src="https://github.com/docsifyjs"></script> -->
+    <!-- <script src="//unpkg.com/docsify@4"></script> -->
+    <!-- <script src="//cdn.jsdelivr.net/npm/docsify@4"></script> -->
+    <script src="./docsify/docsify.min.js"></script>
+    <script src="./docsify/theme/themeable.min.js"></script>
+    <script src="./docsify/plugin/copy-code.min.js"></script>
+    <script src="./docsify/plugin/pagination.min.js"></script>
+    <script src="./docsify/plugin/search.min.js"></script>
+    <script src="./docsify/plugin/zoom-image.min.js"></script>
+    <script src="./docsify/plugin/external-script.min.js"></script>
+    <script src="./docsify/plugin/md-tabs.min.js"></script>
+    <script src="./docsify/plugin/flexible-alerts.min.js"></script>
+  </body>
+</html>
