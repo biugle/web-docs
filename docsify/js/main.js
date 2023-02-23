@@ -2,14 +2,17 @@
  * @Author: HxB
  * @Date: 2023-02-13 18:23:03
  * @LastEditors: DoubleAm
- * @LastEditTime: 2023-02-15 15:12:07
+ * @LastEditTime: 2023-02-23 09:37:38
  * @Description: 新增部分功能
- * @FilePath: \web_docs\docsify\js\main.js
+ * @FilePath: \web-docs\docsify\js\main.js
  */
 const VERSION = '1.0.0';
 
 /** 主题模式切换 START **/
 window.onload = () => {
+  setTimeout(() => {
+    document.body.classList.add('finish');
+  }, 3000);
   const themeType = window.localStorage.getItem('theme-type');
   if (!themeType) {
     return;

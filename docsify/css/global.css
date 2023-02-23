@@ -119,6 +119,9 @@ body.ready-transition.ready-spinner:after {
   -ms-transform: translate(-49%, -49%);
   -o-transform: translate(-49%, -49%);
 }
+body.ready-transition.ready.ready-fix.ready-spinner.finish:after {
+  opacity: 0 !important;
+}
 body.sticky:after {
   display: none;
 }
