@@ -103,7 +103,7 @@ function test()
 
 ## 字母与分隔
 
-<table style="background: #fff;"><tbody><tr><th>语言</th><th>变量 (Variable/Parameter/Argument)</th><th>常量 (Constant)</th><th>面向对象 - 类名 (Class Name)</th><th>面向对象 - 成员 (mebmer)</th></tr><tr><td>HTML、CSS</td><td>全部小写，不同单字以「-」分隔 <br> user-id</td><td colspan="3"></td></tr><tr><td>JavaScript</td><td>首字小写，不同单字「首字以大写」分隔 <br> userId</td><td rowspan="2">全部大写，不同单字以「_」分隔<br>MAX_COUNT</td><td rowspan="2">首字大写，不同单字「首字以大写」分隔<br>一个文件放一个 Class<br>文件名即为 Class Name<br>User</td><td rowspan="2">公有 (public)&nbsp;: 首字小写，不同单字「首字以大写」分隔 <br> name, getName<br>私有 (private): _公有命名规则<br> _name、_getName</td></tr><tr><td>PHP</td><td>全部小写，不同单字以「_」分隔 <br> user_id</td></tr><tr><td>SQL</td><td>由使用者定义的：表名、字段名<br>全部小写，不同单字以「_」分隔</td><td>SQL语法、函数 <br> 全部大写 <br> SELECT、INSERT INTO</td><td colspan="2"> </td></tr></tbody></table>
+<table><tbody><tr><th>语言</th><th>变量 (Variable/Parameter/Argument)</th><th>常量 (Constant)</th><th>面向对象 - 类名 (Class Name)</th><th>面向对象 - 成员 (mebmer)</th></tr><tr><td>HTML、CSS</td><td>全部小写，不同单字以「-」分隔 <br> user-id</td><td colspan="3"></td></tr><tr><td>JavaScript</td><td>首字小写，不同单字「首字以大写」分隔 <br> userId</td><td rowspan="2">全部大写，不同单字以「_」分隔<br>MAX_COUNT</td><td rowspan="2">首字大写，不同单字「首字以大写」分隔<br>一个文件放一个 Class<br>文件名即为 Class Name<br>User</td><td rowspan="2">公有 (public)&nbsp;: 首字小写，不同单字「首字以大写」分隔 <br> name, getName<br>私有 (private): _公有命名规则<br> _name、_getName</td></tr><tr><td>PHP</td><td>全部小写，不同单字以「_」分隔 <br> user_id</td></tr><tr><td>SQL</td><td>由使用者定义的：表名、字段名<br>全部小写，不同单字以「_」分隔</td><td>SQL语法、函数 <br> 全部大写 <br> SELECT、INSERT INTO</td><td colspan="2"> </td></tr></tbody></table>
 
 ## 注释
 
