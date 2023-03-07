@@ -4,11 +4,16 @@
 
 ## 通用
 
+* **技术选型需注意：**
+  * 不要引入过多无用复杂的依赖
+  * 尽量选择基础应用，避免使用二次创作的项目。
+  * 选择流行度较高，时效性好、近期的插件/项目，不要选择老项目、长期不维护、文档不全的。
 * 每个函数应该注释，注释应包含函数功能说明、变量说明。
 * 不必要的代码不要写，也禁止放到注释里面。
 * `if-else` 的 `{}` 严禁省略。
 * `{}` 起始一律跟在前一个功能的最后，禁止换行。
 * 非特殊情况，代码最长不能超过一个屏幕。
+* 一行最多 **120** 个字符，单个文件不要超过 **800** 行，一个方法/函数最好不要超过**一个屏幕**或 **100** 行。
 * 关键字/括号/冒号与值前后要加空格
 * 不允许连续多行空行
 * 必须带有结束 `;`
@@ -16,7 +21,7 @@
 * 不要对变量使用 `delete` 操作
 * 同一模块有多个导入时`一次性`写完
 * 不要使用 `eval()`
-* 禁止省略箭头函数 (Arrow function) 的括号
+* 禁止省略箭头函数 (Arrow function) 的**括号**
 * 禁止使用 HTML 字符串，一律使用 Dom 产生 HTML。
 * 尽量使用模版字符串，纯字符串建议使用**单引号**。
 * 避免 `do...while/while` 等循环
@@ -24,6 +29,7 @@
 * 变量定义明确作用域，非特殊情况禁止使用 `var`。
 * 嵌套超过`三层`或者 `3` 个以上的 else 要思考去优化，比如：条件简化、先 `return` 等。
 * `import` 在最前面，`export` 在最后面，特殊情况除外。
+* 不要刻意简化代码，要注重**可读性**，没有用到的参数不要写，比如：`_ => {}` 应该改成 `() => {}`。
 * ...
 
 ?> 正确写法
@@ -156,4 +162,213 @@ var getUser = function(userId, options){
   // do something
   return user;
 };
+```
+
+## EsLint&Prettier&EditorConfig
+
+### 说明
+
+* 必须安装 `VsCode` 的 `EsLint` 与 `Prettier` 插件，用于统一代码格式化风格。
+* 项目必须引入 `EsLint` 与 `Prettier`，统一管理。
+* 必须有 `.editorconfig` 文件
+
+```bash
+npm i eslint -D
+npm i prettier eslint-config-prettier eslint-plugin-prettier -D
+npx eslint --init # 初始化对应的项目 eslint 基础模板
+
+# 提交前 hook，可以引入 husky。
+eslint ./ --fix --ext .ts,.tsx,.js,.jsx,.vue # eslint 执行修复全局代码
+prettier --write ./**/*.{ts,tsx,js,jsx,vue,html,css,scss,less} # prettier 执行全局格式化
+```
+
+### 参考配置
+
+* **EsLint**
+
+```javascript
+// .eslintrc.js
+// http://www.verydoc.net/eslint/00003312.html
+module.exports = {
+  // ...
+  plugins: ['react', '@typescript-eslint', 'spellcheck', 'import', 'zob'],
+  rules: {
+    'no-undef': ['error'], // 禁止未声明变量的引用
+    'spaced-comment': ['error', 'always'], // 注释开始后，此规则将强制间距的一致性 // 或 /*。
+    'space-before-blocks': ['error', 'always'], // 块必须至少有一个先前的空格
+    'no-multiple-empty-lines': ['error', { max: 5 }], // 最大空行数量
+    'no-mixed-spaces-and-tabs': ['error', false], // 不允许使用混合空格和制表符进行缩进
+    'comma-dangle': ['error', 'always-multiline'], // 多行时才需要尾随逗号
+    indent: ['error', 2, { SwitchCase: 1 }], // 强制执行一致的缩进样式
+    'linebreak-style': ['error', 'windows'], // 强制执行统一的行结尾 CRLF
+    quotes: ['error', 'single'], // 单引号
+    semi: ['error', 'always'], // 在语句结尾需要分号
+    // 'no-unused-vars': ['warn', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }], // @typescript-eslint/no-unused-vars
+    '@typescript-eslint/no-explicit-any': ['off'], // 允许使用 any 类型，但是我们不要滥用，允许使用是为了不给开发设限，但是该定义的还是要做的。
+    'no-irregular-whitespace': ['error', { skipStrings: true }], // 禁止使用无效或不规则的空格，字符串跳过。
+    'no-multi-spaces': ['error', { ignoreEOLComments: true }], // 禁止在某些表达式，函数周围使用多个空格，行尾注释除外。
+    'no-trailing-spaces': ['error', { skipBlankLines: false }], // 禁止行尾添加尾随空白，空行也是一样。
+    'brace-style': ['error', '1tbs', { allowSingleLine: false }], // 强制执行一个真正的大括号风格，括号必须跟在块后。
+    'key-spacing': ['warn', { beforeColon: false, afterColon: true }], // 对象 key 与冒号之间不允许使用空格，值与冒号间必须使用空格。
+    'object-curly-spacing': ['error', 'always'], // 需要大括号内的空格，比如解构赋值，导入导出。
+    'array-bracket-spacing': ['error', 'never'], // 数组括号内强制实现一致的间距空格
+    'max-lines': ['error', 800], // 文件限制行数最大 800 行
+    'max-statements': ['error', 100], // 一个方法限制行数最大 100 行
+    'spellcheck/spell-checker': [
+      // 拼写检查警告
+      'warn',
+      {
+        comments: true, // 注释也要检查
+        strings: true,
+        identifiers: true,
+        lang: 'en_US',
+        skipWords: [
+          // npm i modules-words // 常用词库
+          'javascript',
+          'debounce',
+          'pathname',
+          'minify',
+          'charset',
+          'unmount',
+          'poweroff',
+          'resize',
+          'linux',
+          'darwin',
+          'resizable',
+          'renderer',
+          'unordered',
+          'dropdown',
+          'checkbox',
+          'tooltip',
+          'namespaced',
+          'echarts',
+          'onopen',
+          'formatter',
+          'xlocation',
+          'xcall',
+          'utils',
+          'cordova',
+          'ionics',
+          'lodash',
+          'splashscreen',
+          'uglify',
+          'jsonp',
+          'async',
+          'bcrypt',
+          'werbs',
+          'navbar',
+          'popover',
+          'substr',
+          'zindex',
+          'viewport',
+          'validator',
+          'webserver',
+          'whitelist',
+          'runtime',
+          'proto',
+          'popup',
+          'polyfill',
+          'preload',
+          'mixin',
+          'middleware',
+          'lifecycle',
+          'linter',
+          'hostname',
+          'dirname',
+          'autocomplete',
+          'sourcemap',
+          'dicts'
+        ],
+        skipIfMatch: [
+          // http url
+          'http://[^s]*',
+          // Auxiliary werbs
+          // see: https://github.com/aotaduy/eslint-plugin-spellcheck/issues/7
+          "(\\s|^)\\w+'t(\\s|$)",
+          // ordinals
+          // https://github.com/aotaduy/eslint-plugin-spellcheck/issues/8
+          '(\\s|^|\\w+)\\d+(st|nd|rd|th)(\\s|[A-Z][a-zA-Z]+|$)',
+          // pre/post prefixes both in kebab case and camel case
+          '(\\s|^)(pre|post)([-\\w]|[A-Z])[a-zA-Z]+(\\s|$)',
+          // xml tags
+          '<(?:/)?[\\w-]+>',
+          // cryptographic octal hashes
+          '^[0-9a-f]{5,999}$',
+          // hex colors
+          '^#[0-9a-f]{3,6}$',
+          // For MIME Types
+          '^[-\\w]+/[-\\w\\.]+$'
+        ],
+        skipWordIfMatch: [
+          '^foobar.*$' // words that begin with foobar will not be checked
+        ],
+        minLength: 5 // >=5 个字符以上才监测
+      }
+    ],
+    'import/first': ['error'], // 导入必须在最前面
+    'import/exports-last': ['error'], // 导出必须在最后面
+    'import/newline-after-import': ['error'], // 导入后必须留出空行
+    'import/no-duplicates': ['error'], // 同一个文件的导入必须写在一行
+    'import/order': ['error', { 'newlines-between': 'never' }], // 导入排序
+    'zob/comment': 'error' // 中英文空格间距 搜索中找英文符号正则 ([\u4e00-\u9fa5]\s*[!@#$%^&*_+=;:'"{\[\]},.\/\\`\(\)])
+  },
+  // ...
+};
+// 若特殊文件，比如压缩文件，可以使用 .eslintignore 忽略。
+```
+
+* **Prettier**
+
+```javascript
+// .prettierrc.js
+module.exports = {
+  printWidth: 120, // 最大行宽
+  semi: true, // 末尾是否要分号
+  singleQuote: true, // 单引号
+  bracketSpacing: true, // 在对象括号之间增加空格
+  bracketSameLine: false, // 将多行 HTML（HTML、JSX、Vue、Angular）元素放在最后一行的末尾，而不是单独放在下一行。
+  arrowParens: 'always', // 必须包含箭头函数的括号，而不是 avoid。
+  insertPragma: false, // 是否插入已经被格式化的标识
+  tabWidth: 2, // 缩进空格数
+  useTabs: false, // 是否使用 tab 缩进
+  endOfLine: "crlf", // 行尾换行符
+};
+// 若特殊文件，比如压缩文件，可以使用 .prettierignore 忽略。
+```
+
+* **EditorConfig**
+
+```bash
+# 编辑器配置
+# .editorconfig
+# http://editorconfig.org
+root = true # 是否是顶级配置文件，设置为 true 的时候才会停止搜索 .editorconfig 文件，一般我们项目只设置一个。
+
+[*]
+charset = utf-8 # 编码格式
+end_of_line = crlf # 换行符类型
+indent_size = 2 # 缩进大小
+indent_style = space # 缩进方式
+insert_final_newline = true # 是否让文件以空行结束
+max_line_length = 120 # 最大行宽
+trim_trailing_whitespace = true # 是否删除行尾空格
+
+[*.md]
+max_line_length = 120
+```
+
+* **常见忽略目录/文件**
+
+```txt
+.DS_Store/**
+.idea/**
+.vscode/**
+**/node_modules/**
+**/dist/**
+**/test/**
+**/*.svg
+**/*.toml
+**/*.xml
+**/**.min.*
+// ...
 ```
