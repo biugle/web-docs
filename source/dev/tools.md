@@ -183,6 +183,17 @@ cloudcmd # not found cmd
 npx cloudcmd # 可以执行，不需要自己设置 $PATH，方便快捷。
 ```
 
+- **protobufjs**
+
+> 用于转换 proto 文件为 js 文件，配合 WebSocket 使用。
+
+```bash
+npm -g install protobufjs --force
+npm -g install protobufjs-cli --force
+
+pbjs -t json-module -w es6 -o src/proto/proto.js src/proto/monitor.proto
+```
+
 - **其他**
 
 ```bash
