@@ -313,30 +313,38 @@ nvm version  // 查看 nvm 版本，检查是否安装成功。
 | --- | --- |
 | [JavaScript](https://www.w3school.com.cn/js/js_intro.asp)/[TypeScript](https://ts.xcatliu.com/)/[Dart](https://dart.cn/guides) | 开发基础 (HTML/CSS/JS) |
 | Ajax/Axios/Fetch | 前后台交互... |
+| 浏览器基础/JS 引擎基础/网络基础知识/CDN/设计模式&面向对象/RWD 规范/业界标准 | 基础知识了解学习... |
 | JSON/XML/CSV/TXT/YML | 各种类型的数据格式... |
+| [Canvas](https://www.runoob.com/w3cnote/html5-canvas-intro.html) | Canvas 了解学习... |
 | ~~[FontAwesome](https://fontawesome.com)~~ | 图标库... |
 | ~~[BootStrap](https://bootstrap.hexschool.com)~~ | 初期学习传统前端开发 UI 框架... |
 | ~~[jQuery](https://github.com/jquery/jquery)~~ | 一代版本一代神... |
 | [Scss/Less](https://a.biugle.cn/sass_scss_less) | CSS 预处理 |
 | [NodeJS](https://nodejs.org/en/docs/) | NodeJS |
-| [Vue](https://github.com/vuejs/vue) | 前端框架 |
-| [React](https://angular.cn/) | 前端框架 |
+| [Vue](https://github.com/vuejs/vue) | 前端框架-记得安装浏览器 DevTools 配合使用 |
+| [React](https://angular.cn/) | 前端框架-记得安装浏览器 DevTools 配合使用 |
 | [Antd](https://ant.design/)/[Element](https://element.eleme.cn/) | Antd React组件库/Element Vue组件库 |
-| 小程序 Taro... | 暂时不做... |
-| [Cordova](https://https://cordova.apache.org/) | 前端安卓壳子 |
+| RN、H5、小程序(Taro)、SSR、SEO... | 暂时不做... |
+| [Cordova](https://https://cordova.apache.org/) | 移动端壳子 |
 | [Electron](https://www.electronjs.org/) | 客户端壳子/[常见问题&范例](https://github.com/pandaoh/react-view/blob/main/electron/electron_build_desc.ts) |
 | [Flutter](https://flutter.dev/) | 谷歌新一代跨平台开发框架 |
-| [D3](https://https://d3js.org/) | 可视化库 |
-| [Echarts](https://echarts.apache.org/) | 前端好用的图表库 |
+| [D3.JS](https://https://d3js.org/)/[Three.js](https://threejs.org/) | 可视化库 |
+| [ECharts](https://echarts.apache.org/) | 前端好用的图表库 |
 | [Nodejs](https://nodejs.org/) | Node |
 | [Express](https://expressjs.com/) | 基于 Nodejs 的服务端框架 |
-| [Koa2](https://koajs.com/) | 基于 Nodejs 的轻量服务端框架 |
-| [Webpack](https://www.webpackjs.com/)/[Rollup](https://www.rollupjs.com/)/[Vite](https://cn.vitejs.dev/) | 前端打包构建工具 |
-| [MarkDown](/markdown/) | 文档编写语法 |
+| [Koa](https://koajs.com/) | 基于 Nodejs 的轻量服务端框架 |
+| [Webpack](https://www.webpackjs.com/)/[Rollup](https://www.rollupjs.com/)/[Vite](https://cn.vitejs.dev/) | 前端打包构建工具，顺便学 Babel/Polyfill/RunTime/CoreJS/StyleLint 等。 |
+| [MarkDown](/markdown/) | 文档编写语法，文档是进步积累之本！ |
 | [Docker](/dev/docker_cmd) | 应用容器管理 |
 | [EsLint/Prettier/Husky](http://localhost:3000/#/code/javascript?id=eslintampprettierampeditorconfig) | 代码质量管控 |
-| GithubActions/Jenkins... | DevOps...CI/CD等持续集成与交付流水线了解... |
-| **待补充** | - |
+| WebSocket/GRPC/Protobuf... | 一些协议了解... |
+| UMD/ES(ESModule)/CJS(CommonJS)/IIFE/RequireJS/AMD/CMD... | 各种模块化规范了解... |
+| GithubActions/Jenkins/开发流程标准(SOP)... | DevOps...CI/CD等持续集成与交付流水线了解... |
+| Mock/Test/Nginx... | 模拟数据的工具、测试工具、Nginx 配置学习... |
+| 性能监控/日志记录/ServerLess... | 其他知识... |
+| 前端安全(XSS、CSRF、隐私数据保护、防钓鱼、点击劫持、上传文件、SQL 注入、跨域)... | 防御型代码也是安全的一种(比如：CSS 防御布局、JS 防呆、HTML 防止白屏/卡死/暴露信息等)... |
+| **注意身体健康** | **珍惜眼前美好** |
+| *待补充* | - |
 
 ## 快速开始
 
