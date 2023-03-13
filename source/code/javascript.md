@@ -174,7 +174,9 @@ var getUser = function(userId, options){
 
 ```bash
 npm i eslint -D
-npm i prettier eslint-config-prettier eslint-plugin-prettier -D
+npm i prettier eslint-config-prettier eslint-plugin-prettier -D # 注意 eslint-plugin-prettier 的版本可能不兼容导致报错，可能需要手动修改。
+npm i eslint-plugin-import eslint-plugin-spellcheck eslint-plugin-zob -D
+
 npx eslint --init # 初始化对应的项目 eslint 基础模板
 
 # 提交前 hook，可以引入 husky。
@@ -191,21 +193,28 @@ prettier --write ./**/*.{ts,tsx,js,jsx,vue,html,css,scss,less} # prettier 执行
 // http://www.verydoc.net/eslint/00003312.html
 module.exports = {
   // ...
-  plugins: ['react', '@typescript-eslint', 'spellcheck', 'import', 'zob'],
+  extends: ['prettier', 'eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['prettier', '@typescript-eslint', 'spellcheck', 'import', 'zob'],
   rules: {
+    'prettier/prettier': 'error', // prettier 相关的规则必须遵守
+    '@typescript-eslint/ban-ts-comment': 'off', // 允许使用 ts 注释
+    'no-useless-escape': 'warn', // 非必要的转义符号，允许但提示。
     'no-undef': ['error'], // 禁止未声明变量的引用
     'spaced-comment': ['error', 'always'], // 注释开始后，此规则将强制间距的一致性 // 或 /*。
     'space-before-blocks': ['error', 'always'], // 块必须至少有一个先前的空格
     'no-multiple-empty-lines': ['error', { max: 5 }], // 最大空行数量
     'no-mixed-spaces-and-tabs': ['error', false], // 不允许使用混合空格和制表符进行缩进
-    'comma-dangle': ['error', 'always-multiline'], // 多行时才需要尾随逗号
+    'comma-dangle': ['error', 'only-multiline'], // 多行时才可以使用尾随逗号
     indent: ['error', 2, { SwitchCase: 1 }], // 强制执行一致的缩进样式
     'linebreak-style': ['error', 'windows'], // 强制执行统一的行结尾 CRLF
     quotes: ['error', 'single'], // 单引号
     semi: ['error', 'always'], // 在语句结尾需要分号
     // 'no-unused-vars': ['warn', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }], // @typescript-eslint/no-unused-vars
     '@typescript-eslint/no-explicit-any': ['off'], // 允许使用 any 类型，但是我们不要滥用，允许使用是为了不给开发设限，但是该定义的还是要做的。
-    'no-irregular-whitespace': ['error', { skipStrings: true }], // 禁止使用无效或不规则的空格，字符串跳过。
+    'no-irregular-whitespace': [
+      'error',
+      { skipStrings: true, skipComments: true, skipRegExps: true, skipTemplates: true },
+    ], // 禁止使用无效或不规则的空格，字符串等特殊情况跳过。
     'no-multi-spaces': ['error', { ignoreEOLComments: true }], // 禁止在某些表达式，函数周围使用多个空格，行尾注释除外。
     'no-trailing-spaces': ['error', { skipBlankLines: false }], // 禁止行尾添加尾随空白，空行也是一样。
     'brace-style': ['error', '1tbs', { allowSingleLine: false }], // 强制执行一个真正的大括号风格，括号必须跟在块后。
@@ -331,7 +340,7 @@ module.exports = {
   insertPragma: false, // 是否插入已经被格式化的标识
   tabWidth: 2, // 缩进空格数
   useTabs: false, // 是否使用 tab 缩进
-  endOfLine: "crlf", // 行尾换行符
+  endOfLine: 'crlf', // 行尾换行符
 };
 // 若特殊文件，比如压缩文件，可以使用 .prettierignore 忽略。
 ```
@@ -371,4 +380,11 @@ max_line_length = 120
 **/*.xml
 **/**.min.*
 // ...
+```
+
+```txt
+/*
+!/src/ # 如果有排除项，必须写 /*，同时排除项要写在通配符后面。
+
+!*.md
 ```
