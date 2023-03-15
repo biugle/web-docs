@@ -1,6 +1,6 @@
 
 > [!WARNING]
-> Docker 前端镜像配置
+> Docker 前端镜像与 Nginx 配置
 
 ## Nginx
 
@@ -26,6 +26,8 @@ server {
   gzip_vary on;
   gzip_disable "MSIE [1-6]\.";
 
+  client_max_body_size 100m; # 将该服务下的所有请求实体的大小限制为 100m
+
   server_name localhost;
   charset utf-8;
   root /usr/share/nginx/html;
@@ -36,7 +38,30 @@ server {
 
   # 文件代理定向
   # location / {
-  #   try_files $uri $uri/ /main/index.html;
+  #   root html; # 项目目录
+  #   index index.html; # 默认读取文件
+  #   try_files $uri $uri/ /index.html; # 配置 history 模式的刷新空白
+  # }
+
+  # 后缀匹配 解决静态资源找不到问题
+  # location ~* \.(gif|jpg|jpeg|png|css|js|ico)$ {
+  #   root html/static/;
+  # }
+  
+  # PC 端和移动端使用不同的项目文件映射
+  # location / {
+  #   root /home/static/pc;
+  #   if ($http_user_agent ~* '(mobile|android|iphone|ipad|phone)') {
+  #     root /home/static/mobile;
+  #   }
+  #   index index.html;
+  # }
+
+  # 访问限制
+  # location /static {
+  #   root html;
+  #   allow 39.xxx.xxx.xxx; # allow 允许
+  #   deny ll; # deny  拒绝
   # }
 
   location /api/ {
@@ -137,6 +162,139 @@ server {
 
   location /test/ {
     proxy_pass $TEST_URL;
+  }
+}
+```
+
+### SSL 配置 HTTPS
+
+```bash
+server {
+  listen 80;
+  server_name www.xxx.com;
+  # 将 http 重定向转移到 https
+  return 301 https://$server_name$request_uri;
+}
+
+server {
+  listen 443 ssl;
+  server_name www.xxx.com;
+  ssl_certificate /etc/nginx/ssl/www.xxx.com.pem;
+  ssl_certificate_key /etc/nginx/ssl/www.xxx.com.key;
+  ssl_session_timeout 10m;
+  ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_prefer_server_ciphers on;
+  
+  location / {
+    root /html/xxx;
+    index index.html index.htm index.md;
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
+
+### 配置负载均衡
+
+```bash
+upstream my_upstream {
+  server http://localhost:9001;
+  server http://localhost:9002;
+  server http://localhost:9003;
+}
+
+server {
+  listen 9000;
+  server_name test.com;
+
+  location / {
+    proxy_pass my_upstream;
+    proxy_set_header Host $proxy_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+}
+```
+
+### 单个 Web 服务配置多个项目
+
+> 使用 location 匹配路由区别，**更推荐**参考本站 docker-compose 文档中的[范例(多个容器)](/dev/docker_compose_env)通过多个服务部署实现。
+
+```bash
+server {
+  listen 80;
+  server_name _;
+  
+  # 主应用
+  location / {
+    root html/main;
+    index index.html;
+    try_files $uri $uri/ /index.html;
+  }
+  
+  # 子应用一
+  location ^~ /store/ {
+    proxy_pass http://localhost:8001;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+  
+  # 子应用二
+  location ^~ /school/ {
+    proxy_pass http://localhost:8002;
+    proxy_redirect off;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+  
+  # 静态资源读取不到问题处理
+  rewrite ^/api/profile/(.*)$ /(${替换成正确路径的文件的上一层目录})/$1 last;
+}
+
+# 子应用一服务
+server {
+  listen 8001;
+  server_name _;
+  location / {
+    root html/store;
+    index index.html;
+    try_files $uri $uri/ /index.html;
+  }
+  
+  location ^~ /store/ {
+    alias html/store/;
+    index index.html index.htm;
+    try_files $uri /store/index.html;
+  }
+  
+  # 接口代理
+  location  /api {
+    proxy_pass http://localhost:10000;
+  }
+}
+
+# 子应用二服务
+server {
+  listen 8002;
+  server_name _;
+  location / {
+    root html/school;
+    index index.html;
+    try_files $uri $uri/ /index.html;
+  }
+  
+  location ^~ /school/ {
+    alias html/school/;
+    index index.html index.htm;
+    try_files $uri /school/index.html;
+  }
+  
+  # 接口代理
+  location  /api {
+    proxy_pass http://localhost:10010;
   }
 }
 ```
