@@ -196,9 +196,18 @@ module.exports = {
   extends: ['prettier', 'eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   plugins: ['prettier', '@typescript-eslint', 'spellcheck', 'import', 'zob'],
   rules: {
-    'prettier/prettier': 'error', // prettier 相关的规则必须遵守
+    'zob/comment': 'error', // 中英文空格间距 找英文符号正则 ([\u4e00-\u9fa5]\s*[!@#$%^&*_+=;:'"{\[\]},.\/\\`\(\)])
     '@typescript-eslint/ban-ts-comment': 'off', // 允许使用 ts 注释
     'no-useless-escape': 'warn', // 非必要的转义符号，允许但提示。
+    'prettier/prettier': [
+      'error',
+      {
+        // trailingComma: 'all',
+        // arrowParens: 'always',
+        // htmlWhitespaceSensitivity: 'ignore',
+      },
+      { usePrettierrc: true },
+    ], // prettier 相关的规则必须遵守
     'no-undef': ['error'], // 禁止未声明变量的引用
     'spaced-comment': ['error', 'always'], // 注释开始后，此规则将强制间距的一致性 // 或 /*。
     'space-before-blocks': ['error', 'always'], // 块必须至少有一个先前的空格
@@ -354,7 +363,6 @@ module.exports = {
     'import/newline-after-import': ['error'], // 导入后必须留出空行
     'import/no-duplicates': ['error'], // 同一个文件的导入必须写在一行
     'import/order': ['error', { 'newlines-between': 'never' }], // 导入排序
-    'zob/comment': 'error' // 中英文空格间距 搜索中找英文符号正则 ([\u4e00-\u9fa5]\s*[!@#$%^&*_+=;:'"{\[\]},.\/\\`\(\)])
   },
   // ...
 };
@@ -365,6 +373,7 @@ module.exports = {
 
 ```javascript
 // .prettierrc.js
+// https://www.prettier.cn/docs/options.html
 module.exports = {
   printWidth: 120, // 最大行宽
   semi: true, // 末尾是否要分号
@@ -376,6 +385,8 @@ module.exports = {
   tabWidth: 2, // 缩进空格数
   useTabs: false, // 是否使用 tab 缩进
   endOfLine: 'crlf', // 行尾换行符
+  trailingComma: 'all', // 尽可能使用尾随逗号，结尾处不加逗号 none。
+  htmlWhitespaceSensitivity: 'ignore', // 忽略 '>' 下落问题
 };
 // 若特殊文件，比如压缩文件，可以使用 .prettierignore 忽略。
 ```
@@ -414,11 +425,13 @@ max_line_length = 120
 **/*.toml
 **/*.xml
 **/**.min.*
+**/package-lock.json
 // ...
 ```
 
 ```txt
 /*
+!/*.js
 !/src/ # 如果有排除项，必须写 /*，同时排除项要写在通配符后面。
 
 !*.md
