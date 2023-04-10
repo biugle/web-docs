@@ -46,14 +46,15 @@ docker rm $(docker ps -a -q) # 删除所有停止的容器
 
 # 导入导出镜像
 docker save -o xxx.tar [image]
-docker save [image] > xxx.tar
-docker load < xxx.tar
+docker load -i xxx.tar [image]
+# docker save [image] > xxx.tar
+# docker load [image] < xxx.tar
 
 # 导入导出容器
-ocker export -o xxx-`date +%Y%m%d`.tar [container]
+docker export -o xxx-`date +%Y%m%d`.tar [container]
+docker import xxx.tar [container-image]
 docker export [container] > xxx.tar
-docker import xxx.tar [container]
-cat ./xxx.tar | sudo docker import - [container]
+cat ./xxx.tar | sudo docker import - [container-image]
 
 # 进入容器操作
 docker exec -it [container] /bin/bash
