@@ -140,6 +140,24 @@ nrm ls # 查看所有源
 nrm use cnpm # 使用指定源
 nrm add <registry> <url> [home] # 添加源
 // 可以通过 -h 查看帮助，一般都是 nrm [options] [command]。
+
+--------------------------------------------------
+
+// electron 相关
+# 设置华为镜像源
+npm config set registry https://mirrors.huaweicloud.com/repository/npm/
+
+# 浏览器引擎驱动镜像改成国内镜像
+npm config set chromedriver_cdnurl https://mirrors.huaweicloud.com/chromedriver
+
+# electron 镜像改成国内镜像
+npm config set electron_mirror https://mirrors.huaweicloud.com/electron/
+
+# electron_builder_binaries 镜像改成国内镜像
+npm config set electron_builder_binaries_mirror https://mirrors.huaweicloud.com/electron-builder-binaries/
+
+# 如果安装了yarn，把yarn镜像也改成国内镜像
+yarn config set registry https://mirrors.huaweicloud.com/repository/npm/
 ```
 
 - **全局安装`pm2`：方便管理、监控 node 服务，包含 `nodemon` 的功能。**
