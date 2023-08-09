@@ -210,6 +210,9 @@ npm -g install protobufjs --force
 npm -g install protobufjs-cli --force
 
 pbjs -t json-module -w es6 -o src/proto/proto.js src/proto/monitor.proto
+
+# 项目中
+npm i protobufjs
 ```
 
 - **其他**
