@@ -213,6 +213,16 @@ pbjs -t json-module -w es6 -o src/proto/proto.js src/proto/monitor.proto
 
 # 项目中
 npm i protobufjs
+
+# WebSocket Protobuf 交互示例
+# https://gitee.com/doubleam/ws-protobuf-demo
+# -----其他介绍-----
+# 前端通用模板使用
+# npm i js-xcmd -g
+# xcmd create-web-base [dir] [branch]
+# client-main ===> c-main
+# client-modules ===> c-modules
+# simple-cross-platform ===> cross
 ```
 
 - **其他**
