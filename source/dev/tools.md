@@ -386,6 +386,7 @@ Notepad++ 可以替换所有打开文件的对应内容
 
 - 抓包工具：`Fiddler`、`Charles`、`WireShark`
 - 浏览器：`Chrome`、`Edge`
+  - **记得设置控制台英文、外观字体为 Consolas，设置选项中或** [edge://settings/fonts](edge://settings/fonts) 、[chrome://settings/fonts](chrome://settings/fonts) 。
 - 服务器管理工具：`SecureCRT`、`XShell`
 - **接口测试工具：** `Postman`、`ApiPost`、`ApiFox`
 - FTP 工具：`XFtp`、`FileZilla`
@@ -393,12 +394,12 @@ Notepad++ 可以替换所有打开文件的对应内容
 - Windows Docker: `Docker Desktop`
 - 数据库管理: `Navicat`、`DBeaver`
 - **远程协作：** `向日葵`、`ToDesk`
-- **梯子：** `Shadowsocks`、`V2Ray`、`Clash For Windows`
+- **梯子：** `Shadowsocks`、`V2Ray`、`Clash For Windows` [免费 Airport](https://askahh.com/index.php/archives/101/)
 - **Windows APP：** `终端`、`WSL`、`UTools`
 
 ### Docker-Desktop 下载使用
 
-> 略
+> 参考 [Docker Desktop Windows https://www.runoob.com/docker/windows-docker-install.html](https://www.runoob.com/docker/windows-docker-install.html)
 
 ## 技术准备
 
