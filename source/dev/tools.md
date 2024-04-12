@@ -38,7 +38,9 @@ git config --global url."https://".insteadOf git:// # 解决 git:// 报错
 > 推荐使用 `SourceTree`，他是一个 Git 的图形化工具，可以让我们更高效、便捷、优雅的协作。
 
 - **SourceTree 待办**
-  - 跳过登录方法，将文件 `accounts.json`放入 `%LocalAppData%\Atlassian\SourceTree\`。
+  - 先安装打开，提示需要登录。
+  - 跳过登录方法，关闭软件，将文件 `accounts.json`放入 `%LocalAppData%\Atlassian\SourceTree\`。
+  - 之后再打开一直点下一步，就可以跳过登录了。
 
 ```bash
 [
@@ -97,6 +99,7 @@ git fetch origin --prune --prune-tags
 > 推荐使用 VsCode 进行开发，方便团队代码规范执行。
 
 - 设置 `VsCode` 应用兼容性以管理员身份运行
+- 登录后同步配置
 - Windows PowerShell 特殊配置（以管理员的身份运行 PowerShell）
 
 ```bash
@@ -106,6 +109,8 @@ get-ExecutionPolicy 等于 RemoteSigned 即可
 ```
 
 ## 安装 Node
+
+> 建议使用 `nvm` 管理 `node`
 
 - [https://nodejs.org/en/](https://nodejs.org/en/)
 
@@ -119,7 +124,16 @@ npm install yarn -g
 
 - **替换 `npm` 安装源： 官方源的访问速度太慢，切换到淘宝镜像源。**
 
+> 建议使用 `npm i nrm -g` 全局管理源
+
 ```bash
+// 当然也可以使用 nrm 管理
+npm i -g nrm # 安装 nrm
+nrm ls # 查看所有源
+nrm use cnpm # 使用指定源
+nrm add <registry> <url> [home] # 添加源
+// 可以通过 -h 查看帮助，一般都是 nrm [options] [command]。
+
 npm config set registry https://registry.npm.taobao.org --global
 npm config set disturl https://npm.taobao.org/dist --global
 yarn config set registry https://registry.npm.taobao.org --global
@@ -133,13 +147,6 @@ npm install -g mirror-config-china --registry=http://registry.npm.taobao.org
 
 // 安装 cnpm，注意使用 cnpm 时，--save在 npm 高版本中是可以省略不写的，但是 cnpm 还是需要写的。
 npm install -g cnpm --registry=https://registry.npm.taobao.org
-
-// 当然也可以使用 nrm 管理
-npm i -g nrm # 安装 nrm
-nrm ls # 查看所有源
-nrm use cnpm # 使用指定源
-nrm add <registry> <url> [home] # 添加源
-// 可以通过 -h 查看帮助，一般都是 nrm [options] [command]。
 
 --------------------------------------------------
 
@@ -199,6 +206,18 @@ cloudcmd # not found cmd
 
 # 但是我们可以使用 npx，高版本 node 自带，低版本自己安装 npx。
 npx cloudcmd # 可以执行，不需要自己设置 $PATH，方便快捷。
+```
+
+- **全局安装`pnpm`：方便管理包。**
+
+```bash
+npm install pnpm -g
+```
+
+- **全局安装`js-xcmd`：方便实现一些自动化脚本。**
+
+```bash
+npm install js-xcmd -g
 ```
 
 - **protobufjs**
@@ -309,16 +328,14 @@ yarn run/test xxx # 运行 xxx
 
 ```javascript
 nvm ls  // 列出所有已安装的 node 版本
-
-nvm ls-remote  // 列出所有远程服务器的版本（官方node version list）
-
 nvm list  // 列出所有已安装的 node 版本
 
+nvm ls-remote  // 列出所有远程服务器的版本（官方node version list）
 nvm list available  // 显示所有可下载的版本
 
 nvm install stable  // 安装最新版 node
 
-nvm install [node版本号]  // 安装指定版本 node
+nvm install [node版本号]  // 安装指定版本 node，一搬推荐 14.20.0、16.20.0、18.20.0，主要使用 16.20.0 即可。
 
 nvm uninstall [node版本号]  // 删除已安装的指定版本
 
@@ -333,6 +350,12 @@ nvm unalias [别名]  // 删除已定义的别名
 nvm alias default [node版本号]  // 设置默认版本
 
 nvm version  // 查看 nvm 版本，检查是否安装成功。
+```
+
+## notepad++ 配置
+
+```txt
+
 ```
 
 ## 其他工具推荐
@@ -367,6 +390,7 @@ nvm version  // 查看 nvm 版本，检查是否安装成功。
 | [React](https://angular.cn/) | 前端框架-记得安装浏览器 DevTools 配合使用 |
 | [Antd](https://ant.design/)/[Element](https://element.eleme.cn/) | Antd React组件库/Element Vue组件库 |
 | RN、H5、小程序(Taro)、SSR、SEO... | 暂时不做... |
+| rxjs 响应式编程、pnpm+turbo 管理 monorepo、sigi 状态管理等 | 好好学习，绝望之谷。 |
 | [Cordova](https://https://cordova.apache.org/) | 移动端壳子 |
 | [Electron](https://www.electronjs.org/) | 客户端壳子/[常见问题&范例](https://github.com/pandaoh/react-view/blob/main/electron/electron_build_desc.ts) |
 | [Flutter](https://flutter.dev/) | 谷歌新一代跨平台开发框架 |
