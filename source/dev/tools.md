@@ -352,10 +352,34 @@ nvm alias default [node版本号]  // 设置默认版本
 nvm version  // 查看 nvm 版本，检查是否安装成功。
 ```
 
-## notepad++ 配置
+## Notepad++ 配置
 
 ```txt
+设置-首选项-编辑-开启 ctrl + 鼠标多列编辑
 
+设置-首选项-搜索引擎-选择【必应】
+
+设置--首选项-其他-关闭自动更新
+
+--------------------------------------------------
+
+设置-语言格式设置-主题选择【Obsidian】
+
+设置-语言格式设置-字体选择【Consolas】或者【Courier New】
+
+设置-语言格式设置-勾选使用全局前景色、背景色、使用全局字体、字体大小
+
+--------------------------------------------------
+
+操作教学：
+Alt+鼠标左键-滑动多列编辑
+Alt+C-列块编辑，编辑列块模式。
+Ctrl+鼠标左键-多点编辑
+搜索查询标记在 搜索页面 最后一个 Tab
+查询页面可以打开双按钮 上一个 下一个
+Notepad++ 可以替换所有打开文件的对应内容
+
+快捷键：https://blog.csdn.net/qq_15134905/article/details/69945887
 ```
 
 ## 其他工具推荐
@@ -363,14 +387,18 @@ nvm version  // 查看 nvm 版本，检查是否安装成功。
 - 抓包工具：`Fiddler`、`Charles`、`WireShark`
 - 浏览器：`Chrome`、`Edge`
 - 服务器管理工具：`SecureCRT`、`XShell`
-- 接口测试工具：`Postman`、`ApiPost`、`ApiFox`
+- **接口测试工具：** `Postman`、`ApiPost`、`ApiFox`
 - FTP 工具：`XFtp`、`FileZilla`
-- 快速编辑工具：`Notepad++`、`Sublime`
+- **快速编辑工具：** `Notepad++`、`Sublime`
 - Windows Docker: `Docker Desktop`
 - 数据库管理: `Navicat`、`DBeaver`
-- 远程协作：`向日葵`、`ToDesk`
-- 梯子：`Shadowsocks`、`V2Ray`、`Clash For Windows`
-- Windows APP：`终端`、`WSL`、`UTools`
+- **远程协作：** `向日葵`、`ToDesk`
+- **梯子：** `Shadowsocks`、`V2Ray`、`Clash For Windows`
+- **Windows APP：** `终端`、`WSL`、`UTools`
+
+### Docker-Desktop 下载使用
+
+> 略
 
 ## 技术准备
 
