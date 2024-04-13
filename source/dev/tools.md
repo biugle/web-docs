@@ -110,7 +110,7 @@ get-ExecutionPolicy 等于 RemoteSigned 即可
 
 ## 安装 Node
 
-> 建议使用 `nvm` 管理 `node`
+> 建议使用 [nvm 管理工具](https://web-docs.biugle.cn/#/dev/tools?id=%e5%ae%89%e8%a3%85-nvm-%e7%ae%a1%e7%90%86-node-%e7%89%88%e6%9c%ac) 管理 `node`，使用工具的话可以跳过本节。
 
 - [https://nodejs.org/en/](https://nodejs.org/en/)
 
@@ -326,12 +326,18 @@ yarn run/test xxx # 运行 xxx
 
 > 下载 nvm-setup 并安装，我们开发中经常会碰到一些 Node 的版本兼容问题，使用 nvm 可以帮助我们快速切换，极其方便。
 
+* **根据命令安装指定 node 版本后，可以执行以下命令，完成基础全局包的安装。**
+
+* `npm i js-xcmd -g`
+* `xcmd ig`
+* `xcmd list g`
+
 ```javascript
 nvm ls  // 列出所有已安装的 node 版本
 nvm list  // 列出所有已安装的 node 版本
 
 nvm ls-remote  // 列出所有远程服务器的版本（官方node version list）
-nvm list available  // 显示所有可下载的版本
+nvm list available  // 显示所有可下载的版本 或者执行 xcmd lsn
 
 nvm install stable  // 安装最新版 node
 
