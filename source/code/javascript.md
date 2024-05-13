@@ -30,6 +30,7 @@
 * 嵌套超过`三层`或者 `3` 个以上的 else 要思考去优化，比如：条件简化、先 `return` 等。
 * `import` 在最前面，`export` 在最后面，特殊情况除外。
 * 不要刻意简化代码，要注重**可读性**，没有用到的参数不要写，比如：`_ => {}` 应该改成 `() => {}`。
+* 国际化 `json` 文件调整完成后，需执行排序去重。例如：`xcmd sort-json ./src/locales/zh_CN.json` ！
 * ...
 
 ?> 正确写法
@@ -190,6 +191,9 @@ prettier --write ./**/*.{ts,tsx,js,jsx,vue,html,css,scss,less} # prettier 执行
 
 ```javascript
 // .eslintrc.js
+  // const { eslintRules } = require('js-xxx');
+  // rules: eslintRules([], {}),
+
 // http://www.verydoc.net/eslint/00003312.html
 module.exports = {
   // ...
@@ -215,7 +219,7 @@ module.exports = {
     'no-mixed-spaces-and-tabs': ['error', false], // 不允许使用混合空格和制表符进行缩进
     'comma-dangle': ['error', 'only-multiline'], // 多行时才可以使用尾随逗号
     indent: ['error', 2, { SwitchCase: 1 }], // 强制执行一致的缩进样式
-    'linebreak-style': ['error', 'windows'], // 强制执行统一的行结尾 CRLF
+    'linebreak-style': ['error', 'unix'], // 强制执行统一的行结尾 lf
     quotes: ['error', 'single'], // 单引号
     semi: ['error', 'always'], // 在语句结尾需要分号
     // 'no-unused-vars': ['warn', { vars: 'all', args: 'after-used', ignoreRestSiblings: true }], // @typescript-eslint/no-unused-vars
@@ -236,7 +240,7 @@ module.exports = {
       // 拼写检查警告
       'warn',
       {
-        comments: true, // 注释也要检查
+        comments: false, // 注释也要检查
         strings: true,
         identifiers: true,
         lang: 'en_US',
@@ -254,6 +258,7 @@ module.exports = {
           'darwin',
           'resizable',
           'renderer',
+          'biugle',
           'unordered',
           'dropdown',
           'checkbox',
@@ -268,6 +273,7 @@ module.exports = {
           'cordova',
           'ionics',
           'lodash',
+          'dayjs',
           'splashscreen',
           'uglify',
           'jsonp',
@@ -331,12 +337,17 @@ module.exports = {
           'unlink',
           'macos',
           'submenu',
+          'nodemon',
+          'hhiiss',
+          'whitesmoke',
+          'iframe',
         ],
         skipIfMatch: [
           // http url
           'http://[^s]*',
           // Auxiliary werbs
           // see: https://github.com/aotaduy/eslint-plugin-spellcheck/issues/7
+          // eslint-disable-next-line quotes
           "(\\s|^)\\w+'t(\\s|$)",
           // ordinals
           // https://github.com/aotaduy/eslint-plugin-spellcheck/issues/8
@@ -350,13 +361,13 @@ module.exports = {
           // hex colors
           '^#[0-9a-f]{3,6}$',
           // For MIME Types
-          '^[-\\w]+/[-\\w\\.]+$'
+          '^[-\\w]+/[-\\w\\.]+$',
         ],
         skipWordIfMatch: [
-          '^foobar.*$' // words that begin with foobar will not be checked
+          '^foobar.*$', // words that begin with foobar will not be checked
         ],
-        minLength: 5 // >=5 个字符以上才监测
-      }
+        minLength: 5, // >=5 个字符以上才监测
+      },
     ],
     'import/first': ['error'], // 导入必须在最前面
     'import/exports-last': ['error'], // 导出必须在最后面
@@ -373,20 +384,29 @@ module.exports = {
 
 ```javascript
 // .prettierrc.js
+  // const { prettierRules } = require('js-xxx');
+  // module.exports = prettierRules();
+
 // https://www.prettier.cn/docs/options.html
 module.exports = {
   printWidth: 120, // 最大行宽
+  proseWrap: 'never', // 不要换行
   semi: true, // 末尾是否要分号
   singleQuote: true, // 单引号
+  jsxSingleQuote: false, // 在 JSX 中使用单引号而不是双引号。
   bracketSpacing: true, // 在对象括号之间增加空格
-  bracketSameLine: false, // 将多行 HTML（HTML、JSX、Vue、Angular）元素放在最后一行的末尾，而不是单独放在下一行。
-  arrowParens: 'always', // 必须包含箭头函数的括号，而不是 avoid。
+  bracketSameLine: false, // 将多行 HTML（HTML 、 JSX 、 Vue 、 Angular）元素放在最后一行的末尾，而不是单独放在下一行。
+  arrowParens: 'always', // 必须包含箭头函数的括号，而不是 avoid 。
   insertPragma: false, // 是否插入已经被格式化的标识
   tabWidth: 2, // 缩进空格数
   useTabs: false, // 是否使用 tab 缩进
-  endOfLine: 'crlf', // 行尾换行符
-  trailingComma: 'all', // 尽可能使用尾随逗号，结尾处不加逗号 none。
+  endOfLine: 'lf', // 行尾换行符
+  trailingComma: 'all', // 尽可能使用尾随逗号，结尾处不加逗号 none 。
   htmlWhitespaceSensitivity: 'ignore', // 忽略 '>' 下落问题
+  // 每个文件格式化的范围是文件的全部内容
+  rangeStart: 0,
+  rangeEnd: Infinity,
+  quoteProps: 'as-needed', // 对象的 key 仅在必要时用引号
 };
 // 若特殊文件，比如压缩文件，可以使用 .prettierignore 忽略。
 ```
@@ -401,7 +421,7 @@ root = true # 是否是顶级配置文件，设置为 true 的时候才会停止
 
 [*]
 charset = utf-8 # 编码格式
-end_of_line = crlf # 换行符类型
+end_of_line = lf # 换行符类型
 indent_size = 2 # 缩进大小
 indent_style = space # 缩进方式
 insert_final_newline = true # 是否让文件以空行结束
@@ -415,17 +435,40 @@ max_line_length = 120
 * **常见忽略目录/文件**
 
 ```txt
+# Editor directories and files
 .DS_Store/**
 .idea/**
 .vscode/**
+
+# Others
 **/node_modules/**
 **/dist/**
+**/dist-ssr/**
+**/docs-dist/**
+**/demo/**
 **/test/**
-**/*.svg
-**/*.toml
-**/*.xml
+**/tests/**
+
+# Files
+*.local
 **/**.min.*
 **/package-lock.json
+
+# Logs
+**/logs/**
+**/**.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Custom
+.husky/**
+build_exe/**
+build_app/**
+build/**
+**/.umi/**
+**/.next/**
+
 // ...
 ```
 
