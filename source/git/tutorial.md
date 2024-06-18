@@ -8,6 +8,23 @@
 git config --global user.name <git用户名>
 git config --global user.email <邮箱地址>
 git config --list                           # 查看当前用户信息
+git config --global --list                  # 查看全局配置
+git config --local --list                   # 查看本项目配置
+
+git config --global alias.cm commit
+git config --global alias.br branch                   # 配置指令别名简写
+
+git config --global credential.helper store           # 输入一次账号密码后第二次就会记住账号密码
+
+git config --global core.ignorecase false             # 关闭忽略大小写
+
+git config --system core.longpaths true               # 配置长路径
+
+git config --global http.sslVerify false              # 禁用 SSL 验证
+
+git config --global core.protectNTFS false            # 关闭 NTFS 文件保护
+
+git config --global url."https://".insteadOf git://   # git:// 报错
 ```
 
 ## 基本操作
@@ -124,6 +141,8 @@ git reflog            # 查看历史记录的 commit id
 ```bash
 git reset --hard HEAD^        
 git reset --hard HEAD~        # 回退到上一个版本
+git reset HEAD^        
+git reset HEAD~               # 回退到上一个版本
 git reset --hard HEAD~100     # 回退到 100 个版本
 
 git reset head -- file        # 不加 file 则全部退回  
@@ -313,6 +332,7 @@ git fetch --tags
 ```bash
 git stash               # 把当前的工作隐藏起来，等以后恢复现场后继续工作。
 git stash list          # 查看所有被隐藏的文件列表
+git stash clear         # 清空当前仓库所有 stash
 ```
 
 ## gitk
@@ -355,6 +375,8 @@ git config --local -l  # 查看配置信息
 
 ---
 
+## 托管网站
+
 ?> 托管网站解释
 
 * 一个组织可以有 0-N 个用户，一个用户默认为一个组织，可以加入多个组织。一个组织有 0-N 个仓库，一个仓库中有 0-N 个代码文件。
@@ -364,6 +386,31 @@ git config --local -l  # 查看配置信息
 * 百科是开发者编写关于这个项目的一些内容
 * 动态可以看到仓库的变动信息
 * fork 相当于克隆仓库 后续不会改变。镜像仓库可以随父仓库更新，主要用于国外网站，创建一个国内的镜像来加快响应速度。
+
+?> 托管网站/平台 issue 相关常见标签
+
+* `bug` 描述的问题是一个 bug
+* `enhancement` 功能增强，没有 feature 也可以指 New feature or request。
+* `feature` 新功能
+* `duplicate` 问题重复
+* `invalid` 可用的，不是 bug。
+* `question` 疑问，需要进一步的信息。
+* `wontfix` 不会修复此问题
+* `help-wanted` 需要帮助
+* `good first issue` Good for newcomers
+
+?> 托管网站/平台 issue 相关内部流程-理想化
+
+* 收到产品需求后建立 issue
+* 管理员评估 issue 并分配标签，指派负责人。
+* 负责人检查已指派的 issue，选择项目发布 tag 以及建立里程碑(Milestone)。
+* 负责人开发并推送代码，commit 信息开头或末尾附带 issue 编号，比如：`Feat: [#1] 提交代码信息` / `Feat: 提交代码信息 [#1]`。
+* 也可以后续对接其他平台，使用托管网站 api 即可。
+* 这样就可以通过一个平台了解工作进度与开发发布任务
+
+?> License
+
+![参考图](../../files/license.jpg)
 
 ## 教学推荐
 
