@@ -47,6 +47,8 @@ git clean                   # 删除非管理对象的文件
 
 * 当某一次提交后，突然想起漏提交了文件，或不小心提交了不满意的代码时，可以使用 `git commit --amend -m "message"` 指令。它可以在不增加一个新的 `commit-id` 的情况下将新修改的代码追加到前一次的 `commit-id` 中。提交之后 message 也将被本次的 message 覆盖，所以还需要再次添加上次的 message。
 
+> Tips: commit 时加上 `--no-verify` 可以跳过 eslint 等 hooks 校验
+
 ## push
 
 ```bash
