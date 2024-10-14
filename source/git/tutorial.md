@@ -331,10 +331,38 @@ git fetch --tags
 
 ## stash
 
-```bash
+```
 git stash               # 把当前的工作隐藏起来，等以后恢复现场后继续工作。
 git stash list          # 查看所有被隐藏的文件列表
 git stash clear         # 清空当前仓库所有 stash
+
+# 暂存当前工作进度
+git stash
+ 
+# 列出所有stash项
+git stash list
+# 会显示
+# stash@{0}: WIP on branch: 1234567 Some work
+# stash@{1}: WIP on branch: 89abcd7 Other work
+# stash@{2}: WIP on branch: fedcba9 More work
+ 
+# 应用最新的stash项
+git stash apply
+ 
+# 应用指定的stash项，例如stash@{2}
+git stash apply stash@{2}
+ 
+# 删除最新的stash项
+git stash drop
+ 
+# 删除指定的stash项，例如stash@{2}
+git stash drop stash@{2}
+ 
+# 应用最新的stash项，并在应用后删除它
+git stash pop
+ 
+# 清除所有stash项
+git stash clear
 ```
 
 ## gitk
